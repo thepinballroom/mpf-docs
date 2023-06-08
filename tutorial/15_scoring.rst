@@ -6,8 +6,8 @@ got a score showing on the display, but it's still pretty boring since
 nothing is actually configured to register a score yet. So in this
 step we're going to add some scoring.
 
-1. Understand in scoring works in MPF
--------------------------------------
+1. Understanding how scoring works in MPF
+-----------------------------------------
 
 MPF includes a core module called the *Variable Player* which is
 responsible for adding (or subtracting) points from a player's
@@ -185,7 +185,7 @@ again. Add the potato text entry, like this:
 Notice that we put ``text: 'POTATO VALUE: (potato)'`` in quotes. That's because we actually want to show the colon as part
 of the text that's displayed on the screen. However colons are important in YAML files. So if we made our entry
 like this: ``text: POTATO VALUE: (potato)``, then we would get a YAML processing error because the YAML processor
-would freak out. "OH MY THERE ARE TWO COLONS?? WHAT'S THIS MEAN??? <crash>"
+would freak out. "OH MY THERE ARE TWO COLONS?? WHAT DOES THIS MEAN??? <crash>"
 
 So we use quotes to tell it that the second colon is just part of our string.
 
