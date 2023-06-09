@@ -30,7 +30,7 @@ a higher-priority mode is started. The tracking of various states of the
 shot profiles is maintained on a per-mode basis.
 
 You can group multiple shots together into *shot groups* for group-level
-functionality like posting events when all the shots in a group in the
+functionality like posting events when all the shots in a group are in the
 same state (lit, unlit, complete, etc.) and for rotating the states
 of shots to the left or right based on certain events happening
 (slingshot hits, flipper button pushes, etc.). A shot can be a member of
@@ -79,7 +79,7 @@ machine. Don't worry about grouping shots here. (That's done in the
 ``shot_groups:`` section.) The shot name can be whatever you want, and
 it will be the name for this shot which is used throughout your
 machine. Remember that everything with at least one switch and a
-"state" is a shot, so standups, rollovers, inlane/outlines, ramps,
+"state" is a shot, so standups, rollovers, inlane/outlanes, ramps,
 loops... You will have lots of shots in your game.
 
 Each shot in your ``shots:`` section can have the following config options set:
@@ -132,7 +132,7 @@ delay_switch:
 One or more sub-entries. Each in the format of string name of a :doc:`switches <switches>` device : ``time string (ms)`` (:doc:`Instructions for entering time strings </config/instructions/time_strings>`)
 
 A dictionary of switches and times which prevent hits for a certain time.
-You can use this if you got another lane feeding into your shot and you want to
+You can use this if you have another lane feeding into your shot and you want to
 prevent it from hitting this shot.
 Use this with care as it might cause issues during multiball.
 
@@ -300,7 +300,7 @@ they will be dynamically replaced with the value of ``led1`` when that show is p
 
 The purpose of show tokens is so you can create resuable shows that you could apply to any shot.
 
-For example, imagine if you wanted to create a shot to flash an LED between red and off. It might look like this:
+For example, imagine if you wanted to create a show to flash an LED between red and off. It might look like this:
 
 .. code-block:: mpf-config
 
