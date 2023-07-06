@@ -72,6 +72,75 @@ multiplied by 100 (but you can also omit this or do anything
 [Variable player](../config_players/variable_player.md)
 supports). Afterwards, you can use the variable in your slide.
 
+## Displaying the value of a timer on a slide in minutes and seconds
+
+If you want to show the timer value in minutes and seconds, then you'll want to also add in the following variable_player and slide_player code:
+
+```
+variable_player:
+  timer_song01_intro_timer_tick:
+    song01_intro_timer_minutes:
+      int: device.timers.song01_intro_timer.ticks / 60
+      action: set
+    song01_intro_timer_seconds:
+      int: device.timers.song01_intro_timer.ticks % 60
+      action: set
+
+  timer_song01_combo_1_timer_tick:
+    song01_combo_1_timer_minutes:
+      int: device.timers.song01_combo_1_timer.ticks / 60
+      action: set
+    song01_combo_1_timer_seconds:
+      int: device.timers.song01_combo_1_timer.ticks % 60
+      action: set
+timers:
+  song01_intro_timer:
+    start_value: 211
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_song01_combos_started
+slide_player:
+  mode_song01_combos_started:
+    song01_intro_slide:
+      widgets:
+        - type: text
+          text: 'Time Left: (player|song01_intro_timer_minutes)'
+          # min_digits: 2
+          font_size: 72
+          font_name: Teal_DarkBlue_72px_86lh
+          bitmap_font: true
+          anchor_x: left
+          anchor_y: bottom
+          x: 100
+          y: 906
+        - type: text
+          text: ':'
+          font_size: 72
+          font_name: Teal_DarkBlue_72px_86lh
+          bitmap_font: true
+          anchor_x: left
+          anchor_y: bottom
+          x: 350
+          y: 906
+        - type: text
+          text: '(player|song01_intro_timer_seconds)'
+          min_digits: 2
+          font_size: 72
+          font_name: Teal_DarkBlue_72px_86lh
+          bitmap_font: true
+          anchor_x: left
+          anchor_y: bottom
+          x: 365
+          y: 906
+```
+In this example, we're adding two variable definitions within the "variable_player" section of our config file in order to define how to calculate the minutes and seconds separately.
+
+You'll also note that we're using three separate text widgets to display this as intended. This is due to the fact that if you add the ":" into the same text widget as either the minutes or seconds widget, the "min_digits" setting will not get displayed resulting in a timer that shows single digits without a zero in front of them as is typically done on a digital clock. 
+
+
 ## Related Events
 
 * [timer_(name)_started](../events/timer_timer_started.md)
